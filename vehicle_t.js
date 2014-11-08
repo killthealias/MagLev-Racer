@@ -123,13 +123,13 @@ function FixedUpdate(){
   updateCamera();
 }
 
-function OnGUI () {
+/* function OnGUI () {
   var info : vehicleInfo_t = GetComponent(vehicleInfo_t);
 
 	GUI.Label(Rect(10 ,10,400,200), "LAP " + info.lap);
 	GUI.Label(Rect(400,10,400,200), info.pos.ToString());
 }
-
+*/
 function OnCollisionStay (collidedObject : Collision) {
   if(0.1 < rigidbody.velocity.magnitude){
 	  var contact = collidedObject.contacts[0];
