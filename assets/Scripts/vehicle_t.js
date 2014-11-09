@@ -1,6 +1,4 @@
 ﻿#pragma strict
-public static var UILap;
-public static var UIPos;
 
 static var velocity  : float = 0f;
 static var aVelocity : float = 0f;
@@ -57,27 +55,32 @@ function updateWaypointInfo(){
       break;
   	}
   }
-
-  info.distanceToNextWaypoint = nextWaypoint.distanceTo(info);
 }
 
 function updateMovement(){
-  var info  : vehicleInfo_t = GetComponent(vehicleInfo_t);
+  var info : vehicleInfo_t = GetComponent(vehicleInfo_t);
 
 	var speed : float = speedDif * Input.GetAxis("Speed");
 	var steer : float = steerDif * Input.GetAxis("Steer");
 
-	velocity  = rigidbody.velocity.magnitude;
+	// if (speed > 0)
+	// 	velocity += (info.acceleration * Time.deltaTime);
+	// else
+	// 	velocity -= (info.acceleration * Time.deltaTime);
+
+  // velocity = Mathf.Clamp(velocity, info.minDrivingSpeed, info.maxDrivingSpeed);
+
+	// rigidbody.velocity = Vector3(0, velocity, 0);
+
+	if (speed > 0)
+		rigidbody.AddRelativeForce(Vector3.down * info.maxDrivingSpeed * speed);
+	else
+		rigidbody.AddRelativeForce(0.2 * Vector3.down * info.maxDrivingSpeed * speed);
+  velocity = rigidbody.velocity.magnitude;
+
 	aVelocity = rigidbody.angularVelocity.y;
 
   info.inReverse = (rigidbody.velocity.z < 0);
-
-	if (speed > 0) {
-		rigidbody.AddRelativeForce(Vector3.down * info.maxDrivingSpeed * speed);
-	}
-	else {
-		rigidbody.AddRelativeForce(0.2 * Vector3.down * info.maxDrivingSpeed * speed);
-	}
 
 	rigidbody.AddRelativeTorque(Vector3.back * info.maxSteeringSpeed * steer);
 }
@@ -125,14 +128,6 @@ function FixedUpdate(){
   updateCamera();
 }
 
-function OnGUI () {
-  var info : vehicleInfo_t = GetComponent(vehicleInfo_t);
-	UILap = info.lap.ToString();
-	UIPos = info.pos.ToString();
-//	GUI.Label(Rect(10 ,10,400,200), "LAP " + info.lap);
-//	GUI.Label(Rect(400,10,400,200), info.pos.ToString());
-}
-
 function OnCollisionStay (collidedObject : Collision) {
   if(0.1 < rigidbody.velocity.magnitude){
 	  var contact = collidedObject.contacts[0];
@@ -141,5 +136,15 @@ function OnCollisionStay (collidedObject : Collision) {
 	  var pos = contact.point;
 
 	  Instantiate(sparkPrefab, pos, rot);
+  }
+}
+
+function OnTriggerEnter(collidedObject : Collider){
+  var info : vehicleInfo_t = gameObject.GetComponent(vehicleInfo_t);
+  var way  : waypoint_t    = collidedObject.gameObject.GetComponent(waypoint_t);
+
+  if((way.id == 0) && (info.finishFlag == true)){
+    info.lap++;
+    info.finishFlag = false;
   }
 }

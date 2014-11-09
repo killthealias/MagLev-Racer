@@ -1,9 +1,12 @@
 ﻿#pragma strict
-public var Text : UI.Text;
+
+public var uiText  : UI.Text;
+public var vehicle : vehicleInfo_t;
+
 function Start () {
 
 }
 
 function Update () {
-	Text.text = "Lap " + vehicle_t.UILap;
+	uiText.text = "Lap " + vehicle.lap.ToString();
 }

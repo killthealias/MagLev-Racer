@@ -1,9 +1,13 @@
 ﻿#pragma strict
-public var Text : UI.Text;
+
+public var uiText  : UI.Text;
+public var vehicle : vehicleInfo_t;
+
 function Start () {
 
 }
 
 function Update () {
-	Text.text = "Position " + vehicle_t.UIPos;
+
+	uiText.text = "Position " + vehicle.pos.ToString();
 }

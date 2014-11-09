@@ -9,7 +9,11 @@ public var lap              : int   = 1;
 public var pos              : int   = 1;
 public var lastWaypoint     : int   = 1;
 
-public var maxDrivingSpeed  : float = 40;
+public var acceleration : float = 5;
+
+public var minDrivingSpeed : float =-10;
+public var maxDrivingSpeed : float = 40;
+
 public var maxSteeringSpeed : float = 40;
 
 public var inReverse : boolean = false;
