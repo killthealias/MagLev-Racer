@@ -17,10 +17,8 @@ function Start(){
 function FixedUpdate(){
   System.Array.Sort(racers, racerPositionSorting);
 
-  for(var i : int = 0; i < racerCount; i++){
+  for(var i : int = 0; i < racerCount; i++)
     racers[i].pos = (1 + i);
-    // Debug.Log("Player [" + racers[i].id + "] in position [" + (i + 1) + "]");
-  }
 }
 
 function racerPositionSorting(a : vehicleInfo_t,
