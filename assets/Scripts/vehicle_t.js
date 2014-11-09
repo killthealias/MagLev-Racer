@@ -55,6 +55,8 @@ function updateWaypointInfo(){
       break;
   	}
   }
+
+  info.distanceToNextWaypoint = nextWaypoint.distanceTo(info);
 }
 
 function updateMovement(){
