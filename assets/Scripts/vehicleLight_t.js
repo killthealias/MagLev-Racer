@@ -9,11 +9,11 @@ function Update () {
   if(!vehicle.isInReverse()){
 	light.color = Color(0/255.0, 143.0/255.0, 255.0/255.0, 255.0/255.0);
 //   light.intensity = (nVelocity * nVelocity);
-	light.intensity = (nVelocity * nVelocity) * 0.1;
+	light.intensity = (nVelocity * nVelocity) * 0.02;
   }
   else{
 //    light.color = Color(218.0/255.0, 63.0/255.0, 63.0/255.0, 255.0/255.0);
 	light.color = Color(0/255.0, 143.0/255.0, 255.0/255.0, 255.0/255.0);
-    light.intensity = (nVelocity * nVelocity) * 0.1;
+    light.intensity = (nVelocity * nVelocity) * 0.02;
   }
 }
