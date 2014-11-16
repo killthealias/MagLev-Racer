@@ -7,7 +7,7 @@ public var track : track_t;
 
 public var lap              : int   = 1;
 public var pos              : int   = 1;
-public var lastWaypoint     : int   = 1;
+public var lastWaypoint     : int   = 0;
 
 public var acceleration : float = 5;
 

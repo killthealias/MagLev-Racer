@@ -42,7 +42,7 @@ function updateWaypointInfo(){
 
     distance = waypoint.distanceTo(info);
 
-    if(distance < 100) {
+    if(distance < 50) {
  	    info.lastWaypoint = i;
 
       nextWaypointID = ((info.lastWaypoint + 1) % waypoints);
